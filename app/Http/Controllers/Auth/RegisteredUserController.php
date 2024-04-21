@@ -50,7 +50,6 @@ class RegisteredUserController extends Controller
         Auth::login($user);
 
         // For sending the welcome email
-        // SendWelcomeEmail::dispatch($user);
         SendWelcomeEmail::dispatch($user)->onQueue('emails');
 
         return redirect(RouteServiceProvider::HOME);
