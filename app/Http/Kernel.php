@@ -68,5 +68,16 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
+
+        
     ];
+
+    
+    
+    protected $routeMiddleware = [
+        
+        // Custom Middleware for admins role only
+        'admin_only' => \App\Http\Middleware\AdminOnly::class,
+    ];
+    
 }

@@ -1,9 +1,10 @@
 <?php
 
-use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ArticleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,7 +41,18 @@ Route::group(['middleware' => ['role:User|Admin', 'auth']], function () {
 // Admin Routes Middleware
 Route::group(['middleware' => ['role:Admin', 'auth']], function () {
 
+    // Users Module Routes
     Route::resource('users', UserController::class);
+
+    // Admin Premissions Routes
+    Route::resource('admin', AdminController::class);
+});
+
+
+// Custom Middleware for Admin Role Actions Only
+Route::group(['middleware' => ['admin', 'auth']], function () {
+
+    Route::resource('admin_only', AdminController::class);
 });
 
 require __DIR__.'/auth.php';

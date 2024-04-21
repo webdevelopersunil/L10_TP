@@ -22,6 +22,20 @@
                             <br>
                             <h6><u>Description</u> : &nbsp&nbsp <span>{{ ucfirst($article->description)}}</span></h6>
                         </div>
+
+                        <div class="text-center mt-5 font-weight-bold" style="font-size: 20px; margin-bottom:30px;">
+                            <h3>Admin Detail View</h3>
+                        </div>
+
+
+                        <div class="col-md-12">
+                            <h6><u>Article Creator Name</u> : &nbsp&nbsp <span>{{ ucfirst($article->user->name)}}</span></h6>
+                            <br>
+                            <h6><u>Email Address</u> : &nbsp&nbsp <span>{{ ucfirst($article->user->email)}}</span></h6>
+                            <br>
+                            <h6><u>User Role</u>: &nbsp;&nbsp;<span style="background:yellow;" >{{ ucfirst($article->user->getRoleNames()->first()) }}</span></h6>
+
+                        </div>
                     </div>
                 </div>
             </div>

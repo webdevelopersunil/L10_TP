@@ -36,7 +36,13 @@
                                             <td>{{ ucfirst($article->description) }}</td>
                                             <td>{{ $article->created_at->format('d,F Y'); }}</td>
                                             <td class="d-flex">
-                                                <a class="btn btn-sm btn-info mr-1" href="{{ route('articles.show', $article->id) }}">Show</a>
+
+                                                @role('Admin')
+                                                    <a class="btn btn-sm btn-info mr-1" href="{{ route('admin.show', $article->id) }}">Show</a>
+                                                @else
+                                                    <a class="btn btn-sm btn-info mr-1" href="{{ route('articles.show', $article->id) }}">Show</a>
+                                                @endrole
+                                            
                                                 <a class="btn btn-sm btn-primary mr-1" href="{{ route('articles.edit', $article->id) }}">Edit</a>
                                                 <form action="{{ route('articles.destroy', $article->id) }}" method="POST">
                                                     @csrf
