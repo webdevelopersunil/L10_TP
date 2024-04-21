@@ -24,6 +24,26 @@ class UserTableSeeder extends Seeder
                 'email'     =>  'user@gmail.com',
                 'password'  =>  'user@123',
             ],
+            [
+                'name'      =>  'User2',
+                'email'     =>  'user2@gmail.com',
+                'password'  =>  'user@123',
+            ],
+            [
+                'name'      =>  'User3',
+                'email'     =>  'user3@gmail.com',
+                'password'  =>  'user@123',
+            ],
+            [
+                'name'      =>  'User4',
+                'email'     =>  'user4@gmail.com',
+                'password'  =>  'user@123',
+            ],
+            [
+                'name'      =>  'User5',
+                'email'     =>  'user5@gmail.com',
+                'password'  =>  'user@123',
+            ],
         ];
 
         foreach ($users as $user) {

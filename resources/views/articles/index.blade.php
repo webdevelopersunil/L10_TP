@@ -16,6 +16,11 @@
 
                         <div style="margin:10px;">
                             <a class="btn btn-light border float-right" href="{{ route('articles.create') }}">Create New Article</a>
+                            @if (Session::has('success'))
+                                <div class="alert alert-success">
+                                    {{ Session::get('success') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="col-md-12">
                             <table class="table">

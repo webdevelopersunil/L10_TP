@@ -15,7 +15,11 @@
                         <div class="row">
 
                         <div style="margin:10px;">
-                            <!-- <a class="btn btn-light border float-right" href="{{ route('users.index') }}">Go Back</a> -->
+                        @if (Session::has('success'))
+                            <div class="alert alert-success">
+                                {{ Session::get('success') }}
+                            </div>
+                        @endif
                         </div>
                         <div class="col-md-12">
                             <table class="table">
@@ -37,6 +41,20 @@
                                             <td>{{ $user->created_at->format('d,F Y'); }}</td>
                                             <td class="d-flex">
                                                 <a class="btn btn-sm btn-info mr-1" href="{{ route('users.show', $user->id) }}">Show</a>
+                                                
+                                                <form id="deleteForm{{ $user->id }}" action="{{ route('users.destroy', $user->id) }}" method="POST"> 
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn btn-sm btn-danger" onclick="confirmDelete('{{ $user->id }}')">Delete</button>
+                                                </form>
+
+                                                
+                                                <!-- <a class="btn btn-sm btn-danger mr-1"
+                                                    href="{{ route('users.destroy', $user->id) }}"
+                                                    onclick="event.preventDefault(); confirmDelete('{{ $user->id }}');">
+                                                        Delete
+                                                </a> -->
+
                                             </td>
                                         </tr>
                                     @endforeach
@@ -49,3 +67,11 @@
         </div>
     </div>
 </x-app-layout>
+<script>
+    function confirmDelete(userId) {
+        if (confirm('Are you sure you want to delete this user?')) {
+            // If the user confirms, submit the form
+            document.getElementById('deleteForm' + userId).submit();
+        }
+    }
+</script>
