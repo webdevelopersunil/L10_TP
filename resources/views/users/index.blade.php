@@ -15,7 +15,7 @@
                         <div class="row">
 
                         <div style="margin:10px;">
-                            <a class="btn btn-light border float-right" href="{{ route('users.index') }}">Go Back</a>
+                            <!-- <a class="btn btn-light border float-right" href="{{ route('users.index') }}">Go Back</a> -->
                         </div>
                         <div class="col-md-12">
                             <table class="table">
