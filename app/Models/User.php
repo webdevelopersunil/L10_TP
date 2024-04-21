@@ -47,8 +47,10 @@ class User extends Authenticatable
     protected static function booted()
     {
         static::creating(function ($user) {
-            
+           
+            // Assigning User role to registered new user
             $user->assignRole( $user->email == 'admin@gmail.com' ? 'Admin' : 'User');
+
             // For example, you can log the creation of a new user
             \Log::info('New user created with ID: ' . $user->id);
         });

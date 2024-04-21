@@ -6,6 +6,9 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ArticleController;
 
+
+use App\Jobs\SendWelcomeEmail;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,6 +56,13 @@ Route::group(['middleware' => ['role:Admin', 'auth']], function () {
 Route::group(['middleware' => ['admin', 'auth']], function () {
 
     Route::resource('admin_only', AdminController::class);
+});
+
+
+Route::get('/mail', function () {
+    $user   =   Auth::user();
+    // dd($user);
+    SendWelcomeEmail::dispatch($user);
 });
 
 require __DIR__.'/auth.php';
