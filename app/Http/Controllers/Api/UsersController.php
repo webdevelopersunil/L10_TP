@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Api;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\ValidationException;
+
 
 class UsersController extends Controller
 {
@@ -21,22 +24,30 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // Validate the request data
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:6',
-        ]);
-
-        // Create the new user
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-        ]);
-
-        // Return a JSON response with the newly created user's details
-        return response()->json(['user' => $user], 201);
+        try {
+            // Validate the request data
+            $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                'password' => 'required|string|min:6',
+            ]);
+        
+            // Create the new user
+            $user = User::create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+            ]);
+        
+            // Return a JSON response with the newly created user's details
+            return response()->json(['user' => $user], 201);
+        } catch (ValidationException $e) {
+            // If a validation error occurs, return a JSON response with the validation error messages and error code 422
+            return response()->json(['error' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            // If any other error occurs, return a JSON response with the error message and error code 500
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     /**
