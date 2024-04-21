@@ -1,0 +1,29 @@
+.full-panel{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  /* Circle Settings */
+  .circle {
+    position: relative;
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .outer-circle {
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 3px 4px rgb(77, 77, 77, 0.46);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 15px;
+  }
+  .inner-circle {
+    width: 85px;
+    height: 85px;
+    border: 3px solid #fff;
+    box-shadow: 0px 0px 3px 2px #dddada inset;
+    z-index: 1;
+    overflow: hidden;
+  }

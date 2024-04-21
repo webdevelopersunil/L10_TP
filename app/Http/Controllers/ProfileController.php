@@ -45,7 +45,7 @@ class ProfileController extends Controller
         $user->update(['profile_picture' => 'profile_pictures/' . $imageName]);
 
         // Redirect back with a success message
-        return redirect()->back()->with('success', 'Profile picture updated successfully.');
+        return redirect()->back()->with('status', 'profile-updated.');
     }
 
     /**
