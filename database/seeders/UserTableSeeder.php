@@ -48,7 +48,7 @@ class UserTableSeeder extends Seeder
 
         foreach ($users as $user) {
 
-            User::create($user);
+            User::create($user)->assignRole( ($user['email'] == 'admin@gmail.com') ? 'Admin' : 'User');
         }
     }
 }

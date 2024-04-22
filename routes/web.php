@@ -61,8 +61,8 @@ Route::group(['middleware' => ['admin', 'auth']], function () {
 
 
 Route::get('/mail', function () {
+    // test purpose
     $user   =   Auth::user();
-    // dd($user);
     SendWelcomeEmail::dispatch($user);
 });
 
